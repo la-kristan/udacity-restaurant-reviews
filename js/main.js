@@ -4,6 +4,15 @@ let restaurants,
 var newMap
 var markers = []
 
+//service worker registration code based on the tutorial at
+//https://itnext.io/service-workers-your-first-step-towards-progressive-web-apps-pwa-e4e11d1a2e85
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(function(reg) {
+    console.log(`Service worker registered on scope ${reg.scope}.`);
+  }).catch(function(err) {
+    console.log(`Service worker registration failed; ${error}`)
+  });
+}
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
